@@ -19,44 +19,44 @@ typedef struct
 } thread_arg;
 
 /* -------------------------------------------------
-			PROTÓTIPO DAS FUNÇÕES
+			PROTÃ“TIPO DAS FUNÃ‡Ã•ES
    ------------------------------------------------- */
 
-// Função para o valor aleatório
+// FunÃ§Ã£o para o valor aleatÃ³rio
 double real_aleatorio();
-// Funções para os arquivos
+// FunÃ§Ãµes para os arquivos
 void cria_arquivo(int tam, char arq[100]);
 int carrega_vetor(int tam, double vetor[tam], char arq[100]);
 void salva_arquivo(int tam, double vetor[tam], char arq[100]);
-// Funções para o método de Merge Sort
+// FunÃ§Ãµes para o mÃ©todo de Merge Sort
 void mergeSort(double vetor[], int inicio, int fim);
 void merge(double vetor[], int inicio, int meio, int fim);
-// Função para threads
+// FunÃ§Ã£o para threads
 void *fthread (void *var);
-// Função auxiliar
+// FunÃ§Ã£o auxiliar
 int def_tamanho(int tam, int *resto, int n_thread);
 
 /* -------------------------------------------------
-			FUNÇÃO MAIN
+			FUNÃ‡ÃƒO MAIN
    ------------------------------------------------- */
 
 int main (void)
 {
-    // Delcaração de variáveis
+    // DelcaraÃ§Ã£o de variÃ¡veis
     int N, T, i;
     char arq_e[100], arq_s[100];
 	int tam_parte, part_temp, resto;
 	thread_arg arg;
 
-    // Inserção do número de itens do vetor
+    // InserÃ§Ã£o do nÃºmero de itens do vetor
     printf("\nDigite a quantidade de numeros desejada: ");
     scanf("%d", &N);
 
-    // Inserção do número de threads a serem usadas   
+    // InserÃ§Ã£o do nÃºmero de threads a serem usadas   
 	printf("Digite a quantidade de threads desejada (2, 4, 8 ou 16): ");
     scanf("%d", &T);
 
-	// Verifica se foi digitado o valor correto para o número de threads
+	// Verifica se foi digitado o valor correto para o nÃºmero de threads
 	while (T != 2 && T != 4 && T != 8 && T != 16)
 	{
 		printf("Opcao digitada invalida! Digite novamente!");
@@ -64,35 +64,35 @@ int main (void)
     	scanf("%d", &T);
 	}
 
-    // Inserção dos nomes do arquivo de entrada
+    // InserÃ§Ã£o dos nomes do arquivo de entrada
     getchar();
     printf("Digite o nome do arquivo de entrada: ");
     fgets(arq_e, 100, stdin);
 	arq_e[strcspn(arq_e, "\n")] = 0; // Tira o '\n' da string
-    strcat(arq_e, ".txt"); // Adiciona a extensão .txt do nome
+    strcat(arq_e, ".txt"); // Adiciona a extensÃ£o .txt do nome
 	
 	printf("Digite o nome do arquivo de saida: ");
-    fgets(arq_s, 100, stdin); // Saída
+    fgets(arq_s, 100, stdin); // SaÃ­da
 	arq_s[strcspn(arq_s, "\n")] = 0; // Tira o '\n' da string
-    strcat(arq_s, ".txt"); // Adiciona a extensão .txt do nome
+    strcat(arq_s, ".txt"); // Adiciona a extensÃ£o .txt do nome
 
-    // Chama a função para criar o arquivo
+    // Chama a funÃ§Ã£o para criar o arquivo
     cria_arquivo(N, arq_e);
 	
 	// Carrega o vetor com os valores do arquivo	
 	double vetor[N];	
 	carrega_vetor(N, vetor, arq_e);
 
-	// Operações para dividir o vetor para as threads
+	// OperaÃ§Ãµes para dividir o vetor para as threads
 	tam_parte = def_tamanho(N, &resto, T);
 	
-	// Cria as threads de acordo com o número especificado
+	// Cria as threads de acordo com o nÃºmero especificado
 	pthread_t t_sort[T];
 		
 	// Loop para iniciar as threads	
 	for(i = 0; i < T; i++)
 	{		
-		// Coloca o tamanho das partes do vetor em uma variável temporária		
+		// Coloca o tamanho das partes do vetor em uma variÃ¡vel temporÃ¡ria		
 		part_temp = tam_parte;		
 		if (resto != 0) // Para distribuir o resto para cada thread
 		{
@@ -104,7 +104,7 @@ int main (void)
 		arg.posicao = i;
 		arg.parte = &vetor[part_temp * i];
 
-		// Criação das threads
+		// CriaÃ§Ã£o das threads
 		pthread_create(&t_sort[i], NULL, fthread, (void *)&arg);
 	}
 		
@@ -124,23 +124,23 @@ int main (void)
 }
 
 /* -------------------------------------------------
-			DECLARAÇÃO DAS FUNÇÕES
+			DECLARAÃ‡ÃƒO DAS FUNÃ‡Ã•ES
    ------------------------------------------------- */
 
-// Função para gerar números reais aleatórios
+// FunÃ§Ã£o para gerar nÃºmeros reais aleatÃ³rios
 double real_aleatorio()
 {
-    // A multiplicação por 1000 faz com que se gere números reais de 0 a 1000
+    // A multiplicaÃ§Ã£o por 1000 faz com que se gere nÃºmeros reais de 0 a 1000
     return (((double)rand() / (double)RAND_MAX) * 1000);
 }
 
-// Função que cria o arquivo
+// FunÃ§Ã£o que cria o arquivo
 void cria_arquivo(int tam, char arq[100])
 {
-    // Garante que o número será aleatório
+    // Garante que o nÃºmero serÃ¡ aleatÃ³rio
     srand((unsigned)time(NULL));
 
-    // Declaração de variáveis
+    // DeclaraÃ§Ã£o de variÃ¡veis
     int t_nome, i, max = rand() % 10;
     double valor;
     FILE *vetor_real; // Arquivo
@@ -148,7 +148,7 @@ void cria_arquivo(int tam, char arq[100])
     // Abreo o arquivo
     vetor_real = fopen(arq, "w");
 
-    // Cria o vetor aleatório e salva no arquivo
+    // Cria o vetor aleatÃ³rio e salva no arquivo
     for (i = 0; i < tam; i++)
     {
         valor = real_aleatorio();
@@ -159,10 +159,10 @@ void cria_arquivo(int tam, char arq[100])
     fclose(vetor_real);
 }
 
-// Função que carrega os valores do arquivo num vetor
+// FunÃ§Ã£o que carrega os valores do arquivo num vetor
 int carrega_vetor(int tam, double vetor[tam], char arq[100])
 {
-	// Declaração de variáveis	
+	// DeclaraÃ§Ã£o de variÃ¡veis	
 	int i;	
 	//double vetor[tam];
 	char c;
@@ -175,7 +175,7 @@ int carrega_vetor(int tam, double vetor[tam], char arq[100])
 	// Leitura de cada item do arquivo para double	
 	for (i = 0; i < tam; i++)
 	{
-		fscanf(vetor_real, "%lf ", &vetor[i]); // Não tá funcionando direito!!
+		fscanf(vetor_real, "%lf ", &vetor[i]); // NÃ£o tÃ¡ funcionando direito!!
 		//fseek(vetor_real, 1, SEEK_CUR);		
 		//fscanf(vetor_real, "%c", &c);
 	}
@@ -186,7 +186,7 @@ int carrega_vetor(int tam, double vetor[tam], char arq[100])
 	return 0;
 }
 
-// Função para salvar o vetor num arquivo 
+// FunÃ§Ã£o para salvar o vetor num arquivo 
 void salva_arquivo(int tam, double vetor[tam], char arq[100])
 {
 	int i;
@@ -195,7 +195,7 @@ void salva_arquivo(int tam, double vetor[tam], char arq[100])
     // Abreo o arquivo
     saida = fopen(arq, "w");
 
-    // Cria o vetor aleatório e salva no arquivo
+    // Cria o vetor aleatÃ³rio e salva no arquivo
     for (i = 0; i < tam; i++)
     {
         fprintf(saida, "%f ", vetor[i]);
@@ -205,25 +205,25 @@ void salva_arquivo(int tam, double vetor[tam], char arq[100])
     fclose(saida);
 }
 
-// Função para definir os tamanhos dos espaços de trabalho das threads
+// FunÃ§Ã£o para definir os tamanhos dos espaÃ§os de trabalho das threads
 int def_tamanho(int tam, int *resto, int n_thread)
 {	
 	int tam_parte;
 	
-	tam_parte = tam / n_thread; // Divisão
+	tam_parte = tam / n_thread; // DivisÃ£o
 	*resto = tam % n_thread;	// Resto
 
-	return tam_parte;			// Retorna o resultado da divisão
+	return tam_parte;			// Retorna o resultado da divisÃ£o
 }
 
-// Função para thread
+// FunÃ§Ã£o para thread
 void *fthread (void *var)
 {
 	int i;
 	// Carrega a estrutura na thread
 	thread_arg *arg = (thread_arg *) var;
 	
-	// Chama a função para o Merge Sort
+	// Chama a funÃ§Ã£o para o Merge Sort
 	mergeSort(arg->parte, 0, arg->tamanho - 1);
 	
 	// Encerra a thread
@@ -235,21 +235,21 @@ void merge(double vetor[], int inicio, int meio, int fim)
 {
     int i, j, k;
     int n1 = meio - inicio + 1;
-    int n2 =  fim - meio; // Para vetores temporários
+    int n2 =  fim - meio; // Para vetores temporÃ¡rios
  
-    // Vetores temporários
+    // Vetores temporÃ¡rios
     double temp_ini[n1], temp_fim[n2];
  
-    // Copia os dados do vetor para os vetores temporários
+    // Copia os dados do vetor para os vetores temporÃ¡rios
     for (i = 0; i < n1; i++)
         temp_ini[i] = vetor[inicio + i];
     for (j = 0; j < n2; j++)
         temp_fim[j] = vetor[meio + 1+ j];
  
-    // Junta os vetores temporários de volta ao vetor original
-    i = 0; // Índice do primeiro vetor
-    j = 0; // Índice do segundo vetor
-    k = inicio; // Índice do vetor original
+    // Junta os vetores temporÃ¡rios de volta ao vetor original
+    i = 0; // Ãndice do primeiro vetor
+    j = 0; // Ãndice do segundo vetor
+    k = inicio; // Ãndice do vetor original
     while (i < n1 && j < n2)
     {
         if (temp_ini[i] <= temp_fim[j])
@@ -282,7 +282,7 @@ void merge(double vetor[], int inicio, int meio, int fim)
     }
 }
 
-// Função específica do Merge Sort
+// FunÃ§Ã£o especÃ­fica do Merge Sort
 void mergeSort(double vetor[], int inicio, int fim)
 {
     if (inicio < fim)
