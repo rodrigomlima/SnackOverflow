@@ -8,8 +8,8 @@
 #include<string.h>
 #include<pthread.h>
 // Criadas
-#include"arquivo.h"
-#include"mergesort.h"
+#include"arquivo.h" // Para manipular os arquivos
+#include"mergesort.h" // Método de ordenação Merge Sort
 
 /* -------------------------------------------------
 			ESTRUTURA PARA AS THREADS
