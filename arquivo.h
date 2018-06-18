@@ -10,3 +10,6 @@ double real_aleatorio();
 void cria_arquivo(int tam, char arq[100]);
 int carrega_vetor(int tam, double vetor[tam], char arq[100]);
 void salva_arquivo(int tam, double vetor[tam], char arq[100]);
+
+// Funções auxiliares
+void arruma_nome(char arq[]);
