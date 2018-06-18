@@ -1,8 +1,8 @@
 #  Sistemas Operacionais - Projeto “Ordenação de alto desempenho"
 ## Feito por
-Irislene Silveira de Paiva 175007
+Irislene Silveira de Paiva - 175007
 
-Rodrigo de Lima Martins 157194
+Rodrigo de Lima Martins - 157194
 
 ## Objetivos
 Este repóstório contém o pedido para um projeto da disciplina de Sistemas Operacionais, ministrada na faculdade de Tecnologia da Unicamp. O projeto tem como objetivo usar multithreads para a ordenação de vetores, seguindo alguns critérios pré-estabelecidos. Um deles é este repositório.
